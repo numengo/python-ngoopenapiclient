@@ -2,41 +2,28 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `ngoopenapiclient` package."""
-
-import pytest
 from click.testing import CliRunner
 
-import ngoopenapiclient import ngoopenapiclient
-from ngoopenapiclient import cli
+from ngoopenapiclient.cli import main
 
-# PROTECTED REGION ID(ngoopenapiclient.test_ngoopenapiclient) ENABLED START
+# PROTECTED REGION ID(ngoopenapiclient.tests.test_ngoopenapiclient) ENABLED START
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+def test_ngoopenapiclient():
+    from ngoopenapiclient import API
+    base_url = 'https://petstore.swagger.io/v2'
+    api = API(base_url)
+    pet = api.pet.get_pet_by_id(1)
+    print(repr(pet))
 
-
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
-
-
-def test_command_line_interface():
-    """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(main, [])
+
+    assert result.output == 'Hello World!\n'
     assert result.exit_code == 0
-    assert 'ngoopenapiclient.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
 
 
 if __name__ == '__main__':
-    test_content(response)
+    # to run test file standalone
+    test_ngoopenapiclient()
+
 # PROTECTED REGION END

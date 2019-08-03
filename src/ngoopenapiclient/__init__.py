@@ -7,6 +7,6 @@ __email__ = 'roman@numengo.com'
 __version__ = '0.1.0'
 
 # PROTECTED REGION ID(ngoopenapiclient.init) ENABLED START
-from ngoopenapiclient import *
-__all__ = []
+from .ngoopenapiclient import *
+__all__ = ["API", "Resource"]
 # PROTECTED REGION END
