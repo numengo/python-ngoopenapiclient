@@ -53,7 +53,7 @@ def get_package_data(package):
     package themselves.
     """
     walk = [(dirpath.replace(package + os.sep, '', 1), filenames)
-            for dirpath, dirnames, filenames in os.walk(os.path.join('src', package))
+            for dirpath, dirnames, filenames in os.walk(os.path.join(package))
             if not os.path.exists(os.path.join(dirpath, '__init__.py'))]
     filepaths = []
     for base, filenames in walk:
@@ -63,7 +63,7 @@ def get_package_data(package):
 
 setup_requires = [
     'matrix',
-    #'pytest-runner', 
+    #'pytest-runner',
 ]
 
 install_requires = [
@@ -72,7 +72,7 @@ install_requires = [
     'click',
     'python-ngoschema',
     'python-simple-rest-client',
-    'dpath',  
+    'dpath',
 ]
 
 post_install_requires = [i for i in install_requires if ('-' in i or ':' in i or '.' in i)]
@@ -92,12 +92,12 @@ class PostInstallCommand(install):
 
 test_requires = [
     'pytest',
-    'pytest-logger', 
+    'pytest-logger',
 ]
 
 extras_requires = {
-}    
-    
+}
+
 setup(
     name=name,
     version=version,
@@ -110,13 +110,11 @@ setup(
     author=author,
     author_email=author_email,
     url=url,
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    packages=[package],
     package_data=get_package_data(package),
-    py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
     include_package_data=True,
     zip_safe=False,
-    keywords=["API", " API client", " REST", " REST API", " swagger", " openAPI", " jsonschema", " schema", " marshalling"], 
+    keywords=["API", " API client", " REST", " REST API", " swagger", " openAPI", " jsonschema", " schema", " marshalling"],
     setup_requires=setup_requires,
     install_requires=install_requires,
     requires=install_requires,

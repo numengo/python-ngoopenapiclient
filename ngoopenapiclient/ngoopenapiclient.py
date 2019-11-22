@@ -12,7 +12,7 @@ from simple_rest_client.request import make_request
 from simple_rest_client.models import Request
 
 from ngoschema import get_builder, decorators
-from ngoschemapremium.openapi2jsonschema import convert as to_json_schema
+from ngoschema_plus.transforms.openapi2jsonschema import convert as to_json_schema
 from jsonschema import RefResolver
 
 
