@@ -63,10 +63,12 @@ API client for API serving a swagger/openAPI schema
 
 * Free software: GNU General Public License v3
 
+.. skip-next
+
 Installation
 ============
 
-::
+Install command::
 
     pip install ngoopenapiclient
 
